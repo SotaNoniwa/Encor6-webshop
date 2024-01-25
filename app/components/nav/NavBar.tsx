@@ -12,10 +12,10 @@ const NavBar = () => {
                     <Link href={'/'} 
                     className={`${redressed.className} font-bold text-2xl`}
                     >Encor6</Link>
-                    <div className="hidden md:block">検索</div>
+                    <div className="hidden md:block">Search</div>
                     <div className="flex items-center gap-8 md:gap-12">
-                        <div>カート</div>
-                        <div>メニュー</div>
+                        <div>Cart</div>
+                        <div>Menu</div>
                     </div>
                 </div>
             </Container>
