@@ -26,7 +26,7 @@ export const CartContextProvider = (props: Props) => {
         const cartItemsInLocalStorage: any = localStorage.getItem('cartItems');
         const itemsToStore: CartProductType[] | null = JSON.parse(cartItemsInLocalStorage);
 
-        setCartProducts(itemsToStore)
+        setCartProducts(itemsToStore);
     }, []);
 
     const handleAddProductToCart = useCallback((product: CartProductType) => {
@@ -39,7 +39,7 @@ export const CartContextProvider = (props: Props) => {
                 updatedCart = [product];
             }
 
-            toast.success('Product added to cart');
+            toast.success('アイテムがカートに追加されました');
 
             // save items that user add in cart to local storage so that it won't go away even though the page gets refresh
             localStorage.setItem('cartItems', JSON.stringify(updatedCart));
