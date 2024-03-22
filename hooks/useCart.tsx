@@ -1,5 +1,6 @@
 import { CartProductType } from "@/app/product/[productId]/ProductDetails";
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 type CartContextType = {
     cartTotalQuantity: number,
@@ -20,6 +21,14 @@ export const CartContextProvider = (props: Props) => {
     const [cartTotalQuantity, setCartTotalQuantity] = useState(0);
     const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(null);
 
+    // Read items added by user, then store those items in cartProducts variable.
+    useEffect(() => {
+        const cartItemsInLocalStorage: any = localStorage.getItem('cartItems');
+        const itemsToStore: CartProductType[] | null = JSON.parse(cartItemsInLocalStorage);
+
+        setCartProducts(itemsToStore)
+    }, []);
+
     const handleAddProductToCart = useCallback((product: CartProductType) => {
         setCartProducts((prev) => {
             let updatedCart;
@@ -29,6 +38,11 @@ export const CartContextProvider = (props: Props) => {
             } else {
                 updatedCart = [product];
             }
+
+            toast.success('Product added to cart');
+
+            // save items that user add in cart to local storage so that it won't go away even though the page gets refresh
+            localStorage.setItem('cartItems', JSON.stringify(updatedCart));
 
             return updatedCart;
         });
