@@ -1,4 +1,4 @@
-import { CartProductType } from "@/app/product/[productId]/ProductDetails";
+import { CartProductType, MAX_NUM_OF_ITEMS } from "@/app/product/[productId]/ProductDetails";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -6,9 +6,13 @@ type CartContextType = {
     cartTotalQuantity: number,
     cartProducts: CartProductType[] | null,
     handleAddProductToCart: (product: CartProductType) => void,
+    handleRemoveProductFromCart: (product: CartProductType) => void,
+    handleCartQuantityIncrease: (product: CartProductType) => void,
+    handleCartQuantityDecrease: (product: CartProductType) => void,
+    handleClearCart: () => void,
 };
 
-// Store cartTotalQuantity, cartProducts and handleAddProductToCart in CartContext. useContext allows us to access the context from any child component, that is, we don't need to pass the data down through props. It's like global variables and local variables (not exactly but you can imagine in that way).
+// Store cartTotalQuantity, cartProducts and handleAddProductToCart in CartContext. useContext allows us to access the context from any child component, that is, we don't need to pass the data down through props. They're like global variables and local variables (not exactly but you can imagine in that way).
 export const CartContext = createContext<CartContextType | null>(null);
 
 // Accept any number of props that may have any data type.
@@ -48,10 +52,84 @@ export const CartContextProvider = (props: Props) => {
         });
     }, []);
 
+    const handleRemoveProductFromCart = useCallback((product: CartProductType) => {
+
+        if (cartProducts) {
+            const filteredProducts = cartProducts.filter((item) => {
+                return item.id !== product.id;
+            });
+
+            setCartProducts(filteredProducts);
+
+            toast.success('アイテムがカートから取り除かれました');
+
+            localStorage.setItem('cartItems', JSON.stringify(filteredProducts));
+        }
+    }, [cartProducts]);
+
+    const handleCartQuantityIncrease = useCallback((product: CartProductType) => {
+        let updatedCart;
+
+        if (product.quantity >= MAX_NUM_OF_ITEMS) {
+            return toast.error(`一度に注文できるのは${MAX_NUM_OF_ITEMS}着までです`);
+        }
+
+        if (cartProducts) {
+            updatedCart = [...cartProducts];
+
+            const existingIndex = cartProducts.findIndex(
+                (item) => item.id === product.id
+            );
+
+            if (existingIndex !== -1) {
+                updatedCart[existingIndex].quantity = updatedCart[existingIndex].quantity + 1;
+            }
+
+            setCartProducts(updatedCart);
+
+            localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+        }
+    }, [cartProducts]);
+
+    const handleCartQuantityDecrease = useCallback((product: CartProductType) => {
+        let updatedCart;
+
+        if (product.quantity <= 1) {
+            return toast.error('これ以上は減らせません\nアイテムをカートから削除する場合は「取り除く」をクリックしてください');
+        }
+
+        if (cartProducts) {
+            updatedCart = [...cartProducts];
+
+            const existingIndex = cartProducts.findIndex(
+                (item) => item.id === product.id
+            );
+
+            if (existingIndex !== -1) {
+                cartProducts[existingIndex].quantity = cartProducts[existingIndex].quantity - 1;
+            }
+
+            setCartProducts(updatedCart);
+
+            localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+        }
+    }, [cartProducts]);
+
+    const handleClearCart = useCallback(() => {
+        setCartProducts(null);
+        setCartTotalQuantity(0);
+
+        localStorage.clear();
+    }, [cartProducts]);
+
     const value = {
         cartTotalQuantity,
         cartProducts,
         handleAddProductToCart,
+        handleRemoveProductFromCart,
+        handleCartQuantityIncrease,
+        handleCartQuantityDecrease,
+        handleClearCart,
     };
 
     // Return CartContext as the value and any other props passed to it.
