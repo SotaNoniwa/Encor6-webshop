@@ -1,14 +1,15 @@
 import Container from "@/app/components/Container";
-import { product } from "@/utils/product";
 import ProductDetails from "./ProductDetails";
+import { products } from "@/utils/products";
 
 interface IParams {
     productId?: string;
 }
 
-//TODO: pass product that is matching to productId. (currently I just pass one product regardless of productId)
 const Product = ({ params }: { params: IParams }) => {
     console.log('params', params);
+
+    const product = products.find((item) => item.id === params.productId);
 
     return <div className="p-8">
         <Container>

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 type CartContextType = {
     cartTotalQuantity: number,
+    cartTotalAmount: number,
     cartProducts: CartProductType[] | null,
     handleAddProductToCart: (product: CartProductType) => void,
     handleRemoveProductFromCart: (product: CartProductType) => void,
@@ -23,7 +24,11 @@ interface Props {
 // This provider component provides the CartContext to its children.
 export const CartContextProvider = (props: Props) => {
     const [cartTotalQuantity, setCartTotalQuantity] = useState(0);
+    const [cartTotalAmount, setCartTotalAmount] = useState(0);
     const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(null);
+
+    console.log('qty: ' + cartTotalQuantity);
+    console.log('amount: ' + cartTotalAmount);
 
     // Read items added by user, then store those items in cartProducts variable.
     useEffect(() => {
@@ -32,6 +37,30 @@ export const CartContextProvider = (props: Props) => {
 
         setCartProducts(itemsToStore);
     }, []);
+
+    // Calculate total costs for items in cart
+    useEffect(() => {
+        const getTotals = () => {
+            if (cartProducts) {
+                const { total, quantity } = cartProducts?.reduce((acc, item) => {
+                    const itemTotal = item.price * item.quantity;
+
+                    acc.total += itemTotal;
+                    acc.quantity += item.quantity;
+
+                    return acc;
+                }, {
+                    total: 0,
+                    quantity: 0,
+                });
+
+                setCartTotalQuantity(quantity);
+                setCartTotalAmount(total);
+            }
+        }
+
+        getTotals();
+    }, [cartProducts]);
 
     const handleAddProductToCart = useCallback((product: CartProductType) => {
         setCartProducts((prev) => {
@@ -124,6 +153,7 @@ export const CartContextProvider = (props: Props) => {
 
     const value = {
         cartTotalQuantity,
+        cartTotalAmount,
         cartProducts,
         handleAddProductToCart,
         handleRemoveProductFromCart,
