@@ -27,9 +27,6 @@ export const CartContextProvider = (props: Props) => {
     const [cartTotalAmount, setCartTotalAmount] = useState(0);
     const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(null);
 
-    console.log('qty: ' + cartTotalQuantity);
-    console.log('amount: ' + cartTotalAmount);
-
     // Read items added by user, then store those items in cartProducts variable.
     useEffect(() => {
         const cartItemsInLocalStorage: any = localStorage.getItem('cartItems');
@@ -38,7 +35,7 @@ export const CartContextProvider = (props: Props) => {
         setCartProducts(itemsToStore);
     }, []);
 
-    // Calculate total costs for items in cart
+    // Calculate total amount for items in cart
     useEffect(() => {
         const getTotals = () => {
             if (cartProducts) {

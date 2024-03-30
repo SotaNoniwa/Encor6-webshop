@@ -18,7 +18,7 @@ const SetQuantity: React.FC<SetQuantityProps> = ({
     handleQuantityDecrease
 }) => {
     return <div className="flex gap-8 items-center">
-        {cartCounter ? null : <div className="font-semibold">QUANTITY:</div>}
+        {cartCounter ? null : <div className="font-semibold">数量:</div>}
         <div className="flex gap-4 items-center text-base">
             <button onClick={handleQuantityDecrease} className={buttonStyles}>-</button>
             <div>{cartProduct.quantity}</div>
