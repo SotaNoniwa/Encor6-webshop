@@ -8,12 +8,10 @@ const HomeBanner = () => {
           <h1 className="text-4xl md:text-6xl font-bold text-slate-200 mb-4">
             encor<span className="text-emerald-500">6</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-200 mb-6">
+          <p className="text-lg md:text-xl text-slate-200 mt-6">
             HANDMADE CLOTHING
           </p>
-          <p className="text-xl md:text-xl text-slate-200 font-bold">
-            ONLINE STORE
-          </p>
+          <p className="text-xl md:text-xl text-slate-200">ONLINE STORE</p>
         </div>
         <div className="w-full md:w-1/2 relative aspect-square">
           <Image src="/logo.png" alt="Banner Image" fill className="" />

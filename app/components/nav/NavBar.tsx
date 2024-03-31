@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "../Container";
-import { dancing_script } from "@/app/fonts";
+import { imperial_script } from "@/app/fonts";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
@@ -16,7 +16,7 @@ const NavBar = async () => {
           <div className="flex items-center justify-between gap-3 md:gap-0">
             <Link
               href={"/"}
-              className={`${dancing_script.className} font-bold text-2xl`}
+              className={`${imperial_script.className} font-bold text-4xl`}
             >
               encor6
             </Link>

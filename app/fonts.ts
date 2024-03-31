@@ -1,4 +1,9 @@
-import { Inter, Noto_Serif_JP, Dancing_Script } from "next/font/google";
+import {
+  Inter,
+  Noto_Serif_JP,
+  Dancing_Script,
+  Imperial_Script,
+} from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -9,7 +14,7 @@ export const noto_serif_jp = Noto_Serif_JP({
   weight: ["400", "700"],
 });
 
-export const dancing_script = Dancing_Script({
+export const imperial_script = Imperial_Script({
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["400"],
 });
