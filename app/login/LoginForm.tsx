@@ -50,7 +50,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       if (callback?.ok) {
         router.push("/cart");
         router.refresh();
-        toast.success("Logged in");
+        toast.success("ログインしました");
       }
 
       if (callback?.error) {
@@ -60,7 +60,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return (
+      <p className="text-center">既にログインしています。 リダイレクト中...</p>
+    );
   }
 
   return (
@@ -68,11 +70,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       <Heading title="sign in to Encor6" />
       <Button
         outline
-        label="Googleアカウントでログインする"
+        label="Googleアカウントでログインする(申し訳ございません、バグ修正中です...)"
         icons={AiOutlineGoogle}
         onClick={() => {
           signIn("google");
         }}
+        disabled={true}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input

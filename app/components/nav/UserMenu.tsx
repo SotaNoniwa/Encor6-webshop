@@ -9,12 +9,15 @@ import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
 import { SafeUser } from "@/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -55,7 +58,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem
                   onClick={() => {
                     toggleOpen();
-                    signOut();
+                    signOut({ redirect: false });
+                    router.push("/");
+                    router.refresh();
+                    toast.success("ログアウトしました");
                   }}
                 >
                   ログアウト

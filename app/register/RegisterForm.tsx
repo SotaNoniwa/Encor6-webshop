@@ -71,7 +71,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return (
+      <p className="text-center">既にログインしています。 リダイレクト中...</p>
+    );
   }
 
   return (
@@ -79,11 +81,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
       <Heading title="sign up for Encor6" />
       <Button
         outline
-        label="Googleアカウントで登録する"
+        label="Googleアカウントで登録する(申し訳ございません、バグ修正中です...)"
         icons={AiOutlineGoogle}
         onClick={() => {
           signIn("google");
         }}
+        disabled={true}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "../Container";
 import FooterList from "./FooterList";
 import { AiFillInstagram } from "react-icons/ai";
+import { FaThreads } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -42,6 +43,9 @@ const Footer = () => {
             <div className="flex gap-2">
               <Link href="https://www.instagram.com/encor6/" target="_blank">
                 <AiFillInstagram size={30} />
+              </Link>
+              <Link href="https://www.threads.net/@encor6" target="_blank">
+                <FaThreads size={30} />
               </Link>
             </div>
           </FooterList>

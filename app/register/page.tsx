@@ -5,6 +5,7 @@ import RegisterForm from "./RegisterForm";
 
 const Register = async () => {
   const currentUser = await getCurrentUser();
+
   return (
     <Container>
       <FormWrap>

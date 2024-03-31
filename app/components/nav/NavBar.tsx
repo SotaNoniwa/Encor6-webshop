@@ -4,6 +4,7 @@ import { dancing_script } from "@/app/fonts";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
+import { FaSearch } from "react-icons/fa";
 
 const NavBar = async () => {
   const currentUser = await getCurrentUser();
@@ -17,9 +18,12 @@ const NavBar = async () => {
               href={"/"}
               className={`${dancing_script.className} font-bold text-2xl`}
             >
-              Encor6
+              encor6
             </Link>
-            <div className="hidden md:block">Search</div>
+            <div>
+              <FaSearch className="cursor-pointer size-[26px]" />
+              {/* TODO: implement search box and its functionality */}
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
               <UserMenu currentUser={currentUser} />

@@ -7,8 +7,8 @@ import CartProvider from "@/providers/CartProvider";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "Encor6",
-  description: "Encor6 brand's e-commerce site",
+  title: "encor6",
+  description: "encor6 e-commerce site",
 };
 
 export default async function RootLayout({
