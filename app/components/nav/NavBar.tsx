@@ -4,7 +4,8 @@ import { imperial_script } from "@/app/fonts";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
-import { FaSearch } from "react-icons/fa";
+import Categories from "./Categories";
+import SearchBar from "./SearchBar";
 
 const NavBar = async () => {
   const currentUser = await getCurrentUser();
@@ -21,8 +22,7 @@ const NavBar = async () => {
               encor6
             </Link>
             <div>
-              <FaSearch className="cursor-pointer size-[26px]" />
-              {/* TODO: implement search box and its functionality */}
+              <SearchBar />
             </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
@@ -31,6 +31,7 @@ const NavBar = async () => {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 };

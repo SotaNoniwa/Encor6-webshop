@@ -39,6 +39,22 @@ model User {
     accounts       Account[]
 }
 
+model Product {
+    id          String  @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    price       Float
+    category    String
+    inStock     Boolean
+    images      Image[]
+}
+
+type Image {
+    color     String
+    colorCode String
+    imageUrl  String
+}
+
 enum Role {
     USER
     ADMIN
