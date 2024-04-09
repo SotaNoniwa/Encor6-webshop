@@ -33,7 +33,7 @@ const Horizontal = () => {
   return <hr className="w-full my-2" />;
 };
 
-export const MAX_NUM_OF_ITEMS = 5;
+export const MAX_NUM_OF_ITEMS = 3;
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const { handleAddProductToCart, cartProducts } = useCart();
@@ -52,7 +52,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const router = useRouter();
 
-  console.log(cartProducts);
+  console.log("cartProducts: ", cartProducts);
 
   useEffect(() => {
     setIsProductInCart(false);

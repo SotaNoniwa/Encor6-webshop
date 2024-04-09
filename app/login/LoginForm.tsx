@@ -75,7 +75,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
         onClick={() => {
           signIn("google");
         }}
-        disabled={true}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input

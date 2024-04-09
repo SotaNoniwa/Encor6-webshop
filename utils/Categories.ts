@@ -20,4 +20,34 @@ export const categories = [
     color: "#EFC3CA",
     icon: GiTShirt,
   },
+  {
+    label: "demo1",
+    color: "#060270",
+    icon: GiTShirt,
+  },
+  {
+    label: "demo2",
+    color: "#BFD641",
+    icon: GiTShirt,
+  },
+  {
+    label: "demo3",
+    color: "#EFC3CA",
+    icon: GiTShirt,
+  },
+  {
+    label: "demo4",
+    color: "#060270",
+    icon: GiTShirt,
+  },
+  {
+    label: "demo5",
+    color: "#BFD641",
+    icon: GiTShirt,
+  },
+  {
+    label: "demo6",
+    color: "#EFC3CA",
+    icon: GiTShirt,
+  },
 ];

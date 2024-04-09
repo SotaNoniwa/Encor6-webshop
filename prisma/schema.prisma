@@ -47,6 +47,8 @@ model Product {
     category    String
     inStock     Boolean
     images      Image[]
+
+    @@unique([name, images.color])
 }
 
 type Image {

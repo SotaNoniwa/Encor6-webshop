@@ -1,5 +1,5 @@
 import NextAuth, { AuthOptions } from "next-auth";
-import Google from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/libs/prismadb";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -8,9 +8,9 @@ import bcypt from "bcrypt";
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
       name: "credentials",
@@ -52,9 +52,9 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
-  pages: {
-    signIn: "/login",
-  },
+  // pages: {
+  //   signIn: "/login",
+  // },
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",

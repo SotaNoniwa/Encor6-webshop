@@ -3,15 +3,7 @@
 import Link from "next/link";
 import Container from "../Container";
 import AdminNavItem from "./AdminNavItem";
-import {
-  BiSolidDashboard,
-  BiSolidAddToQueue,
-  BiCoinStack,
-  BiData,
-  BiDetail,
-  BiDuplicate,
-  BiGridAlt,
-} from "react-icons/bi";
+import { BiData, BiDetail, BiDuplicate, BiGridAlt } from "react-icons/bi";
 import { usePathname } from "next/navigation";
 
 const AdminNav = () => {

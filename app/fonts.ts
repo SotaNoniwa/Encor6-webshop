@@ -1,9 +1,4 @@
-import {
-  Inter,
-  Noto_Serif_JP,
-  Dancing_Script,
-  Imperial_Script,
-} from "next/font/google";
+import { Inter, Noto_Serif_JP, Imperial_Script } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],

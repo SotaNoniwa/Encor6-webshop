@@ -52,9 +52,10 @@ const Category: React.FC<CategoryProps> = ({
   return (
     <div
       onClick={handleClick}
-      className={`flex items-center justify-center text-center gap-1 p-2 border-l-4 hover:text-slate-800 transition cursor-pointer ${
+      className={`flex items-center justify-center text-center text-nowrap gap-1 p-2 border-t-4 hover:text-slate-800 transition cursor-pointer 
+      ${
         selected
-          ? "border-l-yellow-300 text-slate-800 bg-gradient-to-r from-yellow-100 to-yellow-50"
+          ? "border-t-yellow-300 text-slate-800 bg-gradient-to-b from-yellow-100 to-yellow-50"
           : "border-transparent text-slate-500"
       }`}
     >

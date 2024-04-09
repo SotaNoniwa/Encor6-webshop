@@ -47,23 +47,18 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         {isOpen && (
           <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
             {currentUser ? (
-              // {currentUser.role === "ADMIN" ? (
-              //   <Link href="/admin">
-              //     <MenuItem onClick={toggleOpen}>管理画面</MenuItem>
-              //   </Link>
-              // ) : (
-              //   <Link href="/orders">
-              //     <MenuItem onClick={toggleOpen}>ご注文内容</MenuItem>
-              //   </Link>
-              // )}
               <div>
-                <Link href="/orders">
-                  <MenuItem onClick={toggleOpen}>ご注文内容</MenuItem>
-                </Link>
-                <Link href="/admin">
-                  <MenuItem onClick={toggleOpen}>管理画面</MenuItem>
-                </Link>
+                {currentUser.role === "ADMIN" ? (
+                  <Link href="/admin">
+                    <MenuItem onClick={toggleOpen}>管理画面</MenuItem>
+                  </Link>
+                ) : (
+                  <Link href="/orders">
+                    <MenuItem onClick={toggleOpen}>ご注文内容</MenuItem>
+                  </Link>
+                )}
                 <hr />
+                {/* <Link href="/"> */}
                 <MenuItem
                   onClick={() => {
                     toggleOpen();
@@ -75,6 +70,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 >
                   ログアウト
                 </MenuItem>
+                {/* </Link> */}
               </div>
             ) : (
               <div>

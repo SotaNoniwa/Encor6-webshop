@@ -22,7 +22,7 @@ const NavBar = async () => {
             >
               encor6
             </Link>
-            <div>
+            <div className="hidden sm:contents">
               <SearchBar />
             </div>
             <div className="flex items-center gap-8 md:gap-12">
