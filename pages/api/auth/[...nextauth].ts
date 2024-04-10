@@ -13,7 +13,7 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
-      name: "credentials",
+      name: "Credentials",
       credentials: {
         email: {
           label: "email",
@@ -52,9 +52,9 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
-  // pages: {
-  //   signIn: "/login",
-  // },
+  pages: {
+    signIn: "/login",
+  },
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",

@@ -14,19 +14,6 @@ const nextConfig = {
       },
     ],
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/api/:path*",
-  //       destination: "http://localhost:3000/:path*",
-  //     },
-  //   ];
-  // },
-  // reactStrictMode: true,
-  // i18n: {
-  //   locales: ["en"],
-  //   defaultLocale: "en",
-  // },
 };
 
 module.exports = nextConfig;

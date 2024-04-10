@@ -81,7 +81,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
       <Heading title="sign up for Encor6" />
       <Button
         outline
-        label="Googleアカウントで登録する(申し訳ございません、バグ修正中です...)"
+        label="Googleアカウントで登録する"
         icons={AiOutlineGoogle}
         onClick={() => {
           signIn("google");

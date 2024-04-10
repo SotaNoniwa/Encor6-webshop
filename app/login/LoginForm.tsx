@@ -70,7 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       <Heading title="sign in to Encor6" />
       <Button
         outline
-        label="Googleアカウントでログインする(申し訳ございません、バグ修正中です...)"
+        label="Googleアカウントでログインする"
         icons={AiOutlineGoogle}
         onClick={() => {
           signIn("google");
