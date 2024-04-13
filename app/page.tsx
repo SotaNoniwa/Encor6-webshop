@@ -29,6 +29,9 @@ export default async function Home({ searchParams }: HomeProps) {
   //   }
   // }
 
+  const inStockProducts = products.filter((item) => item.inStock);
+  const outOfStockProducts = products.filter((item) => !item.inStock);
+
   // Fisher Yates shuffle algorithm
   function shuffleArray(array: any) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -38,7 +41,7 @@ export default async function Home({ searchParams }: HomeProps) {
     return array;
   }
 
-  const shuffledProducts = shuffleArray(products);
+  const shuffledProducts = shuffleArray(inStockProducts);
 
   return (
     <div>
@@ -48,6 +51,9 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap:8">
           {shuffledProducts.map((product: any) => {
+            return <ProductCard data={product} key={product.id} />;
+          })}
+          {outOfStockProducts.map((product: any) => {
             return <ProductCard data={product} key={product.id} />;
           })}
         </div>

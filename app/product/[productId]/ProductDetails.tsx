@@ -2,7 +2,6 @@
 
 import Button from "@/app/components/Button";
 import ProductImage from "@/app/components/products/ProductImage";
-import SetColor from "@/app/components/products/SetColor";
 import SetQuantity from "@/app/components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
 import { useRouter } from "next/navigation";
@@ -33,7 +32,7 @@ const Horizontal = () => {
   return <hr className="w-full my-2" />;
 };
 
-export const MAX_NUM_OF_ITEMS = 3;
+export const MAX_NUM_OF_ITEMS = 2;
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const { handleAddProductToCart, cartProducts } = useCart();
@@ -68,17 +67,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     }
   }, [cartProducts]);
 
-  // whenever a user change product's color (cartProduct.selectedImage), we redefine this function to ensure it takes the latest value of SelectedImage as a parameter.
-  const handleColorSelect = useCallback(
-    (value: SelectedImageType) => {
-      setCartProduct((prev) => {
-        // Update only selectedImage's value (others remain the same).
-        return { ...prev, selectedImage: value };
-      });
-    },
-    [cartProduct.selectedImage]
-  );
-
   const handleQuantityIncrease = useCallback(() => {
     if (cartProduct.quantity >= MAX_NUM_OF_ITEMS) {
       return;
@@ -101,11 +89,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <ProductImage
-        cartProduct={cartProduct}
-        product={product}
-        // handleColorSelect={handleColorSelect}
-      />
+      <ProductImage cartProduct={cartProduct} product={product} />
       <div className="flex flex-col gap-1 text-slate-500 text-sm">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
         <Horizontal />
@@ -139,13 +123,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           </>
         ) : (
           <>
-            {/* <SetColor
-              images={product.images}
-              cartProduct={cartProduct}
-              handleColorSelect={handleColorSelect}
-            /> */}
             <div>
-              <span className="font-semibold">color: </span>
+              <span className="font-semibold">カラー: </span>
               {cartProduct.selectedImage.color}
             </div>
             <Horizontal />

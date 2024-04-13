@@ -27,8 +27,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           />
         </div>
         <div className="mt-4">{truncateText(data.name)}</div>
-        <div>{data.image.color}</div>
+        <div className="font-semibold">{data.image.color}</div>
         <div className="font-semibold">{formatPrice(data.price)}</div>
+        {!data.inStock ? (
+          <div className="font-bold text-red-500">在庫切れ</div>
+        ) : null}
       </div>
     </div>
   );

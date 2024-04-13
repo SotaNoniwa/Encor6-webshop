@@ -36,10 +36,11 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       return {
         id: product.id,
         name: product.name,
+        color: product.image.color,
         price: formatPrice(product.price),
         category: product.category,
         inStock: product.inStock,
-        images: product.images,
+        image: product.image,
       };
     });
   }
@@ -47,6 +48,22 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 220 },
     { field: "name", headerName: "商品名", width: 220 },
+    {
+      field: "color",
+      headerName: "カラー",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <div className="flex justify-around items-center gap-3">
+            <div> {params.row.color}</div>
+            <div
+              className="h-[20px] w-[20px] rounded-full"
+              style={{ backgroundColor: params.row.image.colorCode }}
+            ></div>
+          </div>
+        );
+      },
+    },
     {
       field: "price",
       headerName: "価格",
@@ -61,7 +78,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     {
       field: "inStock",
       headerName: "在庫",
-      width: 120,
+      width: 100,
       renderCell: (params) => {
         return (
           <div>
@@ -100,7 +117,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
             <ActionButton
               icon={MdDelete}
               onClick={() => {
-                handleDelete(params.row.id, params.row.images);
+                handleDelete(params.row.id, params.row.image);
               }}
             />
             <ActionButton
@@ -131,19 +148,14 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       });
   }, []);
 
-  const handleDelete = useCallback(async (id: string, images: any[]) => {
+  const handleDelete = useCallback(async (id: string, image: any) => {
     toast("商品を削除しています。少々お待ちください...");
 
     const handleImageDelete = async () => {
       try {
-        for (const item of images) {
-          if (item.imageUrl) {
-            // deleting the image from firebase
-            const imageRef = ref(storage, item.imageUrl);
-            await deleteObject(imageRef);
-            console.log("image deleted", item.imageUrl);
-          }
-        }
+        const imageRef = ref(storage, image.imageUrl);
+        await deleteObject(imageRef);
+        console.log("image deleted", image.imageUrl);
       } catch (error) {
         return console.log("Deleting images error", error);
       }
