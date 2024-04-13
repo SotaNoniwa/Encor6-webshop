@@ -19,6 +19,16 @@ export default async function Home({ searchParams }: HomeProps) {
     );
   }
 
+  // Merge items having the same name
+  // let seenName = new Set<string>();
+  // for (let i = 0; i < products.length; i++) {
+  //   if (!seenName.has(products[i].name)) {
+  //     seenName.add(products[i].name);
+  //   } else {
+  //     products.splice(i, 1);
+  //   }
+  // }
+
   // Fisher Yates shuffle algorithm
   function shuffleArray(array: any) {
     for (let i = array.length - 1; i > 0; i--) {

@@ -21,7 +21,7 @@ const Footer = () => {
                 );
               }
               return (
-                <Link key={item.label} href={`?category=${item.label}`}>
+                <Link key={item.label} href={`/?category=${item.label}`}>
                   {item.label}
                 </Link>
               );

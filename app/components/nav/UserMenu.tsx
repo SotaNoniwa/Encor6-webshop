@@ -58,7 +58,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   </Link>
                 )}
                 <hr />
-                {/* <Link href="/"> */}
                 <MenuItem
                   onClick={() => {
                     toggleOpen();
@@ -70,7 +69,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 >
                   ログアウト
                 </MenuItem>
-                {/* </Link> */}
               </div>
             ) : (
               <div>

@@ -45,7 +45,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     name: product.name,
     description: product.description,
     category: product.category,
-    selectedImage: { ...product.images[0] },
+    selectedImage: product.image,
     quantity: 1,
     price: product.price,
   });
@@ -104,7 +104,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       <ProductImage
         cartProduct={cartProduct}
         product={product}
-        handleColorSelect={handleColorSelect}
+        // handleColorSelect={handleColorSelect}
       />
       <div className="flex flex-col gap-1 text-slate-500 text-sm">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
@@ -139,11 +139,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           </>
         ) : (
           <>
-            <SetColor
+            {/* <SetColor
               images={product.images}
               cartProduct={cartProduct}
               handleColorSelect={handleColorSelect}
-            />
+            /> */}
+            <div>
+              <span className="font-semibold">color: </span>
+              {cartProduct.selectedImage.color}
+            </div>
             <Horizontal />
             <SetQuantity
               cartProduct={cartProduct}

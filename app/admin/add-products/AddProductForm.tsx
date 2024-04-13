@@ -150,25 +150,31 @@ const AddProductForm = () => {
 
     await handleImageUploads();
     const priceInNumDataType = parseFloat(data.price);
-    const productData = {
-      ...data,
-      price: priceInNumDataType,
-      images: uploadedImages,
-    };
 
-    axios
-      .post("/api/product", productData)
-      .then(() => {
-        toast.success("商品が登録されました");
-        SetIsProductCreated(true);
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error("商品をdbに登録する際に不具合が生じました");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // create record for each color (one product may have multiple colors)
+    uploadedImages.map((image) => {
+      const productData = {
+        ...data,
+        price: priceInNumDataType,
+        image: image,
+      };
+
+      axios
+        .post("/api/product", productData)
+        .then(() => {
+          toast.success(
+            `${data.name}(${productData.image.color})が登録されました`
+          );
+          SetIsProductCreated(true);
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error("商品をdbに登録する際に不具合が生じました");
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    });
   };
 
   const category = watch("category");
