@@ -27,17 +27,17 @@ model Account {
 }
 
 model User {
-  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String?
-  email          String?    @unique
+  email          String?   @unique
   emailVerified  DateTime?
   image          String?
   hashedPassword String?
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
-  role           Role       @default(USER)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  role           Role      @default(USER)
   accounts       Account[]
-  cartItems      CartItem[]
+  // orders         Order[]
 }
 
 // Product is for one color not for one product
@@ -50,17 +50,25 @@ model Product {
   category    String
   inStock     Boolean
   image       Image
+
+  // orders Order[]
 }
 
-// Each user has list of CartItems to remember their own items in the cart
-// Basicaly these fields are copied from those of Product model
-type CartItem {
-  id       String
-  name     String
-  price    Float
-  image    Image
-  quantity Int    @default(0)
-}
+// This model deal with user's order (currently no implementation but in the future)
+// model Order {
+//   id          String @id @default(auto()) @map("_id") @db.ObjectId
+//   userId      String @db.ObjectId
+//   productId   String @db.ObjectId
+//   name        String
+//   description String
+//   price       Float
+//   category    String
+//   image       Image
+//   quantity    Int    @default(0)
+
+//   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+// }
 
 type Image {
   color     String
