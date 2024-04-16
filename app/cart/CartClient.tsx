@@ -31,11 +31,11 @@ const CartClient = () => {
         .post("/api/order", data)
         .then((item) => {
           console.log("item: ", item);
-          toast.success("added to db");
+          toast.success("Items added to db");
         })
         .catch((error) => {
           console.log(error);
-          toast.error("failed to save");
+          toast.error("Failed to proceed, please login");
         })
         .finally();
     });
