@@ -9,6 +9,7 @@ import ItemContent from "./ItemContent";
 import { formatPrice } from "@/utils/formatPrice";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const CartClient = () => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
@@ -30,8 +31,12 @@ const CartClient = () => {
         .post("/api/order", data)
         .then((item) => {
           console.log("item: ", item);
+          toast.success("added to db");
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          console.log(error);
+          toast.error("failed to save");
+        })
         .finally();
     });
 
