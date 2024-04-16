@@ -22,7 +22,7 @@ type CartContextType = {
   handleClearCart: () => void;
 };
 
-// Store cartTotalQuantity, cartProducts and handleAddProductToCart in CartContext. useContext allows us to access the context from any child component, that is, we don't need to pass the data down through props. They're like global variables and local variables (not exactly but you can imagine in that way).
+// Store cartTotalQuantity, cartProducts and handleAddProductToCart in CartContext. useContext allows us to access the context from any child component, that is, we don't need to pass the data down through props.
 export const CartContext = createContext<CartContextType | null>(null);
 
 // Accept any number of props that may have any data type.
