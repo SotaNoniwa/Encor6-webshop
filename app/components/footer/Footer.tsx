@@ -28,9 +28,7 @@ const Footer = () => {
             })}
           </FooterList>
           <FooterList>
-            <h3 className="text-base font-bold mb-2">
-              🐾 カスタマーサービス (links do not respond now)
-            </h3>
+            <h3 className="text-base font-bold mb-2">🐾 カスタマーサービス</h3>
             <Link href="#">ご利用ガイド</Link>
             <Link href="#">お支払いについて</Link>
             <Link href="#">送料、お届けについて</Link>

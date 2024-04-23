@@ -19,16 +19,6 @@ export default async function Home({ searchParams }: HomeProps) {
     );
   }
 
-  // Merge items having the same name
-  // let seenName = new Set<string>();
-  // for (let i = 0; i < products.length; i++) {
-  //   if (!seenName.has(products[i].name)) {
-  //     seenName.add(products[i].name);
-  //   } else {
-  //     products.splice(i, 1);
-  //   }
-  // }
-
   const inStockProducts = products.filter((item) => item.inStock);
   const outOfStockProducts = products.filter((item) => !item.inStock);
 
